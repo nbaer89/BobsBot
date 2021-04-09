@@ -17,3 +17,10 @@ DIFF_CELL = "A26"
 # Discord Bot Settings
 DISCORD_TOKEN = ""
 COMMAND_PREFIX = "$"
+
+# ExecutiveBaseball Settings
+XBA_KEY = "ENTER_KEY_HERE"
+XBA_ROSTER_SHEET = "Rosters"
+XBA_OPTION_SHEET = "Option Tracker"
+XBA_TEAMLIST_SHEET = "TeamList"
+XBA_TRANSACTION_LOG_SHEET = "Transaction Log"
