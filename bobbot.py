@@ -1,13 +1,13 @@
+import os
+
 import discord
 from discord.ext import commands
-import os
-import asyncio
-import datetime
-import logging
+
 import settings
 
+intents = discord.Intents(guilds=True, members=True, messages=True)
 
-bot = commands.Bot(command_prefix=settings.COMMAND_PREFIX)
+bot = commands.Bot(command_prefix=settings.COMMAND_PREFIX, intents=intents)
 
 
 @bot.event
@@ -16,6 +16,10 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
+
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            bot.load_extension(f'cogs.{filename[:-3]}')
 
 
 @bot.command()
@@ -41,12 +45,6 @@ async def reload(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
     await ctx.send(f'Reloaded extension {extension}.py')
     await ctx.message.delete()
-
-
-for filename in os.listdir('./cogs'):
-    if filename.endswith('.py'):
-        bot.load_extension(f'cogs.{filename[:-3]}')
-
 
 # Main
 if __name__ == '__main__':
